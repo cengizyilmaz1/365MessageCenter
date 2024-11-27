@@ -8,7 +8,7 @@ import { Input } from "@/components/ui/input"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
-import { Search, SlidersHorizontal, AlertCircle, X, Calendar } from "lucide-react"
+import { Search, SlidersHorizontal, AlertCircle, X, Calendar, ChevronDown } from "lucide-react"
 import { Calendar as CalendarComponent } from "@/components/ui/calendar"
 import { getAllMessages, getFormattedDate, formatCalendarDate } from "@/lib/utils"
 import { Message } from "@/types/message"
@@ -20,6 +20,7 @@ export default function MessagesTable() {
   const [selectedTags, setSelectedTags] = useState<string[]>([])
   const [startDate, setStartDate] = useState<Date>()
   const [endDate, setEndDate] = useState<Date>()
+  const [isFilterOpen, setIsFilterOpen] = useState(false)
   const messages = getAllMessages()
 
   // Get unique services and tags
@@ -75,17 +76,23 @@ export default function MessagesTable() {
     setEndDate(undefined)
   }
 
+  const clearAllFilters = () => {
+    setSelectedServices([])
+    setSelectedTags([])
+    clearDateRange()
+  }
+
   const hasActiveFilters = selectedServices.length > 0 || selectedTags.length > 0 || startDate || endDate
 
   return (
     <div className="flex flex-col gap-4">
-      <div className="search-filter-container">
+      <div className="sticky top-16 z-30 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 pb-4 border-b">
         <div className="flex flex-col gap-4">
           <div className="flex flex-wrap items-center gap-3">
-            <div className="relative flex-1 min-w-[200px]">
+            <div className="relative flex-1 min-w-[300px]">
               <Input
                 placeholder="Search messages by ID, title, service, or tags..."
-                className="pl-9 pr-4"
+                className="pl-9 pr-4 h-11"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 aria-label="Search messages"
@@ -96,13 +103,14 @@ export default function MessagesTable() {
               />
             </div>
             
-            <Popover>
+            <Popover open={isFilterOpen} onOpenChange={setIsFilterOpen}>
               <TooltipProvider>
                 <Tooltip>
                   <TooltipTrigger asChild>
                     <PopoverTrigger asChild>
                       <Button 
                         variant="outline"
+                        size="lg"
                         className="gap-2"
                         aria-label="Filter messages"
                       >
@@ -113,6 +121,7 @@ export default function MessagesTable() {
                             {selectedServices.length + selectedTags.length + ((startDate || endDate) ? 1 : 0)}
                           </Badge>
                         )}
+                        <ChevronDown className="h-4 w-4 opacity-50" />
                       </Button>
                     </PopoverTrigger>
                   </TooltipTrigger>
@@ -122,12 +131,24 @@ export default function MessagesTable() {
                 </Tooltip>
               </TooltipProvider>
               
-              <PopoverContent className="w-96 p-4" align="end">
+              <PopoverContent className="w-[400px] p-6" align="end">
                 <div className="space-y-6">
                   <div>
-                    <h4 className="font-medium mb-3">Date Range</h4>
+                    <div className="flex items-center justify-between mb-3">
+                      <h4 className="font-medium">Date Range</h4>
+                      {(startDate || endDate) && (
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={clearDateRange}
+                          className="h-8 px-2 text-xs"
+                        >
+                          Clear dates
+                        </Button>
+                      )}
+                    </div>
                     <div className="grid gap-4">
-                      <div className="grid grid-cols-2 gap-2">
+                      <div className="grid grid-cols-2 gap-4">
                         <div>
                           <label className="text-sm text-muted-foreground">Start Date</label>
                           <CalendarComponent
@@ -149,22 +170,24 @@ export default function MessagesTable() {
                           />
                         </div>
                       </div>
-                      {(startDate || endDate) && (
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          onClick={clearDateRange}
-                          className="w-full"
-                        >
-                          Clear Date Range
-                        </Button>
-                      )}
                     </div>
                   </div>
 
                   <div>
-                    <h4 className="font-medium mb-2">Services</h4>
-                    <div className="flex flex-wrap gap-2">
+                    <div className="flex items-center justify-between mb-3">
+                      <h4 className="font-medium">Services</h4>
+                      {selectedServices.length > 0 && (
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => setSelectedServices([])}
+                          className="h-8 px-2 text-xs"
+                        >
+                          Clear services
+                        </Button>
+                      )}
+                    </div>
+                    <div className="flex flex-wrap gap-2 max-h-[200px] overflow-y-auto">
                       {uniqueServices.map((service) => (
                         <Button
                           key={service}
@@ -183,7 +206,19 @@ export default function MessagesTable() {
                   </div>
                   
                   <div>
-                    <h4 className="font-medium mb-2">Tags</h4>
+                    <div className="flex items-center justify-between mb-3">
+                      <h4 className="font-medium">Tags</h4>
+                      {selectedTags.length > 0 && (
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => setSelectedTags([])}
+                          className="h-8 px-2 text-xs"
+                        >
+                          Clear tags
+                        </Button>
+                      )}
+                    </div>
                     <div className="flex flex-wrap gap-2">
                       {uniqueTags.map((tag) => (
                         <Button
@@ -201,6 +236,17 @@ export default function MessagesTable() {
                       ))}
                     </div>
                   </div>
+
+                  {hasActiveFilters && (
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={clearAllFilters}
+                      className="w-full"
+                    >
+                      Clear all filters
+                    </Button>
+                  )}
                 </div>
               </PopoverContent>
             </Popover>
@@ -259,11 +305,7 @@ export default function MessagesTable() {
                 variant="ghost"
                 size="sm"
                 className="h-7 px-2 text-xs"
-                onClick={() => {
-                  setSelectedServices([])
-                  setSelectedTags([])
-                  clearDateRange()
-                }}
+                onClick={clearAllFilters}
               >
                 Clear all filters
               </Button>
@@ -272,16 +314,16 @@ export default function MessagesTable() {
         </div>
       </div>
 
-      <div className="table-container">
+      <div className="relative overflow-hidden rounded-lg border bg-background shadow">
         <Table>
-          <TableHeader>
+          <TableHeader className="bg-muted/50">
             <TableRow>
-              <TableHead>Status</TableHead>
-              <TableHead>ID</TableHead>
-              <TableHead className="w-[40%]">Title</TableHead>
-              <TableHead>Services</TableHead>
-              <TableHead>Tags</TableHead>
-              <TableHead>Last Updated</TableHead>
+              <TableHead className="w-[50px]">Status</TableHead>
+              <TableHead className="w-[120px]">ID</TableHead>
+              <TableHead className="min-w-[300px]">Title</TableHead>
+              <TableHead className="min-w-[200px]">Services</TableHead>
+              <TableHead className="min-w-[200px]">Tags</TableHead>
+              <TableHead className="w-[150px]">Last Updated</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -308,7 +350,7 @@ export default function MessagesTable() {
                 <TableCell className="font-medium">
                   {message.Id}
                 </TableCell>
-                <TableCell>
+                <TableCell className="font-medium">
                   {message.Title}
                 </TableCell>
                 <TableCell>
