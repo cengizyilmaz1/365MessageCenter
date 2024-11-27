@@ -12,6 +12,7 @@ import { Search, SlidersHorizontal, AlertCircle, X, Calendar } from "lucide-reac
 import { getAllMessages, getFormattedDate } from "@/lib/messages"
 import { Message } from "@/types/message"
 import { Calendar as CalendarComponent } from "@/components/ui/calendar"
+import { formatDisplayDate, formatCalendarDate } from "@/lib/date"
 
 export default function MessagesTable() {
   const [searchQuery, setSearchQuery] = useState("")
