@@ -14,7 +14,7 @@
     },
     {
       "Name": "FeatureStatusJson",
-      "Value": "{\"403103\":[{\"RoadmapId\":403103,\"Platform\":\"Mac\",\"Status\":\"InRollout\",\"LastUpdateTime\":\"2024-11-27T13:38:46.2035906Z\",\"LatestRing\":\"StandardRelease\"},{\"RoadmapId\":403103,\"Platform\":\"Desktop\",\"Status\":\"InRollout\",\"LastUpdateTime\":\"2024-11-27T13:38:46.2035909Z\",\"LatestRing\":\"StandardRelease\"},{\"RoadmapId\":403103,\"Platform\":\"All\",\"Status\":\"InRollout\",\"LastUpdateTime\":\"2024-11-27T13:38:46.2035911Z\",\"LatestRing\":\"StandardRelease\"}]}"
+      "Value": "{\"403103\":[{\"RoadmapId\":403103,\"Platform\":\"Mac\",\"Status\":\"InRollout\",\"LastUpdateTime\":\"2024-11-27T16:47:06.3546935Z\",\"LatestRing\":\"StandardRelease\"},{\"RoadmapId\":403103,\"Platform\":\"Desktop\",\"Status\":\"InRollout\",\"LastUpdateTime\":\"2024-11-27T16:47:06.3546936Z\",\"LatestRing\":\"StandardRelease\"},{\"RoadmapId\":403103,\"Platform\":\"All\",\"Status\":\"InRollout\",\"LastUpdateTime\":\"2024-11-27T16:47:06.3546938Z\",\"LatestRing\":\"StandardRelease\"}]}"
     },
     {
       "Name": "Summary",

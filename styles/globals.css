@@ -95,4 +95,68 @@
   }
 }
 
-/* Rest of the CSS remains the same */
+/* Custom scrollbar styles */
+::-webkit-scrollbar {
+  @apply w-2;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-400 dark:bg-gray-600 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-500 dark:bg-gray-500;
+}
+
+/* Calendar styles */
+.rdp {
+  @apply !w-full;
+}
+
+.rdp-months {
+  @apply !justify-center;
+}
+
+.rdp-month {
+  @apply !w-full;
+}
+
+.rdp-table {
+  @apply !w-full;
+}
+
+.rdp-cell {
+  @apply !p-0;
+}
+
+.rdp-button {
+  @apply !w-full !h-10 !rounded-md;
+}
+
+.rdp-day_selected {
+  @apply !bg-primary !text-primary-foreground hover:!bg-primary/90;
+}
+
+.rdp-day_today {
+  @apply !font-bold !text-primary dark:!text-primary-foreground;
+}
+
+/* Filter popover styles */
+.filter-popover {
+  @apply max-h-[80vh] overflow-y-auto;
+}
+
+/* Message table responsive styles */
+@media (max-width: 768px) {
+  .table-container {
+    @apply -mx-4;
+  }
+  
+  .table-container table {
+    @apply min-w-[800px];
+  }
+}
