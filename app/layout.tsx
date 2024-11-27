@@ -2,7 +2,7 @@ import "@/styles/globals.css"
 import { Metadata } from "next"
 import { Toaster } from "sonner"
 
-import { siteMetadata } from "@/config/metadata"
+import { siteConfig } from "@/config/site"
 import { fontSans } from "@/lib/fonts"
 import { cn } from "@/lib/utils"
 import { SiteHeader } from "@/components/site-header"
@@ -13,43 +13,13 @@ import { ScrollToTop } from "@/components/scroll-to-top"
 
 export const metadata: Metadata = {
   title: {
-<<<<<<< HEAD
-    default: siteMetadata.title,
-    template: `%s | ${siteMetadata.title}`,
-  },
-  description: siteMetadata.description,
-  keywords: siteMetadata.keywords,
-  authors: siteMetadata.authors,
-  creator: siteMetadata.creator,
-  themeColor: siteMetadata.themeColor,
-  icons: siteMetadata.icons,
-  manifest: siteMetadata.manifest,
-  openGraph: siteMetadata.openGraph,
-  twitter: siteMetadata.twitter,
-=======
     default: siteConfig.name,
     template: `%s | ${siteConfig.name}`,
   },
   description: siteConfig.description,
-  keywords: [
-    "Microsoft 365",
-    "Message Center",
-    "Microsoft Updates",
-    "Microsoft Announcements",
-    "Microsoft 365 Admin",
-    "Microsoft 365 Changes",
-    "Microsoft 365 Roadmap",
-    "Microsoft 365 Updates",
-    "Microsoft 365 News",
-    "Microsoft 365 Archive"
-  ],
-  authors: [
-    {
-      name: "Cengiz YILMAZ",
-      url: "https://yilmazcengiz.tr",
-    },
-  ],
-  creator: "Cengiz YILMAZ",
+  keywords: siteConfig.keywords,
+  authors: siteConfig.authors,
+  creator: siteConfig.creator,
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "white" },
     { media: "(prefers-color-scheme: dark)", color: "black" },
@@ -58,10 +28,6 @@ export const metadata: Metadata = {
     icon: "/favicon.ico",
     shortcut: "/favicon-16x16.png",
     apple: "/apple-touch-icon.png",
-    other: {
-      rel: "apple-touch-icon-precomposed",
-      url: "/apple-touch-icon.png",
-    },
   },
   manifest: "/site.webmanifest",
   openGraph: {
@@ -73,7 +39,7 @@ export const metadata: Metadata = {
     siteName: siteConfig.name,
     images: [
       {
-        url: `${siteConfig.url}/og.png`,
+        url: siteConfig.ogImage,
         width: 1200,
         height: 630,
         alt: siteConfig.name,
@@ -84,8 +50,8 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: siteConfig.name,
     description: siteConfig.description,
-    images: [`${siteConfig.url}/og.png`],
     creator: "@cengizyilmaz_",
+    images: [siteConfig.ogImage],
   },
   viewport: {
     width: "device-width",
@@ -93,7 +59,6 @@ export const metadata: Metadata = {
     maximumScale: 5,
     userScalable: true,
   },
->>>>>>> 45f1172fc1085600f681cddf6eb14dc71c0da398
 }
 
 interface RootLayoutProps {
