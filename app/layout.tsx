@@ -2,7 +2,7 @@ import "@/styles/globals.css"
 import { Metadata } from "next"
 import { Toaster } from "sonner"
 
-import { siteConfig } from "@/config/site"
+import { siteMetadata } from "@/config/metadata"
 import { fontSans } from "@/lib/fonts"
 import { cn } from "@/lib/utils"
 import { SiteHeader } from "@/components/site-header"
@@ -13,34 +13,18 @@ import { ScrollToTop } from "@/components/scroll-to-top"
 
 export const metadata: Metadata = {
   title: {
-    default: siteConfig.name,
-    template: `%s | ${siteConfig.name}`,
+    default: siteMetadata.title,
+    template: `%s | ${siteMetadata.title}`,
   },
-  description: siteConfig.description,
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "white" },
-    { media: "(prefers-color-scheme: dark)", color: "black" },
-  ],
-  icons: {
-    icon: "/favicon.ico",
-    shortcut: "/favicon-16x16.png",
-    apple: "/apple-touch-icon.png",
-  },
-  manifest: "/site.webmanifest",
-  openGraph: {
-    type: "website",
-    locale: "en_US",
-    url: siteConfig.url,
-    title: siteConfig.name,
-    description: siteConfig.description,
-    siteName: siteConfig.name,
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: siteConfig.name,
-    description: siteConfig.description,
-    creator: "@cengizyilmaz_",
-  },
+  description: siteMetadata.description,
+  keywords: siteMetadata.keywords,
+  authors: siteMetadata.authors,
+  creator: siteMetadata.creator,
+  themeColor: siteMetadata.themeColor,
+  icons: siteMetadata.icons,
+  manifest: siteMetadata.manifest,
+  openGraph: siteMetadata.openGraph,
+  twitter: siteMetadata.twitter,
 }
 
 interface RootLayoutProps {
