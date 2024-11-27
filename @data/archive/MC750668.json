@@ -14,7 +14,7 @@
     },
     {
       "Name": "FeatureStatusJson",
-      "Value": "{\"381643\":[{\"RoadmapId\":381643,\"Platform\":\"Web\",\"Status\":\"InRollout\",\"LastUpdateTime\":\"2024-11-27T18:38:31.9899051Z\",\"LatestRing\":\"TargetedRelease\"},{\"RoadmapId\":381643,\"Platform\":\"Desktop\",\"Status\":\"FeatureRolloutStatusNotSupported\",\"LastUpdateTime\":\"2024-11-27T18:38:31.9899052Z\",\"LatestRing\":null},{\"RoadmapId\":381643,\"Platform\":\"All\",\"Status\":\"FeatureRolloutStatusNotSupported\",\"LastUpdateTime\":\"2024-11-27T18:38:31.9899053Z\",\"LatestRing\":\"TargetedRelease\"}]}"
+      "Value": "{\"381643\":[{\"RoadmapId\":381643,\"Platform\":\"Web\",\"Status\":\"InRollout\",\"LastUpdateTime\":\"2024-11-27T20:34:32.801642Z\",\"LatestRing\":\"TargetedRelease\"},{\"RoadmapId\":381643,\"Platform\":\"Desktop\",\"Status\":\"FeatureRolloutStatusNotSupported\",\"LastUpdateTime\":\"2024-11-27T20:34:32.8016421Z\",\"LatestRing\":null},{\"RoadmapId\":381643,\"Platform\":\"All\",\"Status\":\"FeatureRolloutStatusNotSupported\",\"LastUpdateTime\":\"2024-11-27T20:34:32.8016422Z\",\"LatestRing\":\"TargetedRelease\"}]}"
     },
     {
       "Name": "Summary",
