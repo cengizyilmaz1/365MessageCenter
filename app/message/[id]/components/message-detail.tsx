@@ -1,10 +1,10 @@
 "use client"
 
-import { getMessageData, getMessageSummary, getMessageRoadmapID } from "@/lib/messages"
+import { getMessageData, getMessageSummary, getMessageRoadmapID } from "@/lib/utils"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
-import { Copy, Link2, Twitter, Linkedin, ArrowLeft } from "lucide-react"
+import { Copy, Link2, Twitter, Linkedin } from "lucide-react"
 import { toast } from "sonner"
 import Link from "next/link"
 import InfoCards from "./info-cards"
@@ -12,7 +12,6 @@ import InfoCards from "./info-cards"
 export default function MessageDetail(props: { id: string }) {
   const msg = getMessageData(props.id)
   const summary = getMessageSummary(msg)
-  const roadmapId = getMessageRoadmapID(msg)
   const currentUrl = typeof window !== 'undefined' ? window.location.href : ''
 
   const handleCopyId = () => {
@@ -131,24 +130,6 @@ export default function MessageDetail(props: { id: string }) {
             <p className="text-lg leading-relaxed">
               {summary}
             </p>
-          </CardContent>
-        </Card>
-      )}
-
-      {roadmapId && (
-        <Card className="w-full overflow-hidden rounded-xl border shadow-lg glass-card">
-          <CardHeader>
-            <CardTitle className="text-xl font-semibold">Roadmap</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <Link 
-              href={`https://www.microsoft.com/en-US/microsoft-365/roadmap?filters=&searchterms=${roadmapId}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-lg leading-relaxed hover:underline"
-            >
-              View in Microsoft 365 Roadmap ({roadmapId})
-            </Link>
           </CardContent>
         </Card>
       )}
