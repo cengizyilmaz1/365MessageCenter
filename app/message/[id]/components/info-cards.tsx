@@ -1,6 +1,6 @@
 "use client"
 
-import { getFormattedDate, getMessageData, getMessagePlatforms, getMessageRoadmapID } from "@/lib/messages"
+import { getFormattedDate, getMessageData, getMessagePlatforms, getMessageRoadmapID } from "@/lib/utils"
 import { AlertCircle, Calendar, CalendarClock, ExternalLink, MessageSquare, MonitorSmartphone, Tag, Route } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import {
