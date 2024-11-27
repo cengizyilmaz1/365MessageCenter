@@ -1,0 +1,45 @@
+import { Message } from '@/types/message';
+import dataMessages from '@/@data/messages.json'
+
+const messages: Message[] = dataMessages;
+
+export function getAllMessageIds(): { id: string }[] {
+    return messages.map((item) => {
+        return {
+            id: item.Id,
+        };
+    });
+}
+
+export function getAllMessages(): Message[] {
+    return messages;
+}
+
+export function getMessageData(id: string): Message | undefined {
+    return messages.find((item) => item.Id === id);
+}
+
+export function getMessageSummary(msg: Message | undefined): string {    
+    const summary = msg?.Details?.find((item) => item.Name === "Summary");
+    return summary?.Value?.toString() || "";
+}
+
+export function getMessageRoadmapID(msg: Message | undefined): string {    
+    const roadmapId = msg?.Details?.find((item) => item.Name === "RoadmapIds");
+    return roadmapId?.Value?.toString() || "";
+}
+
+export function getMessagePlatforms(msg: Message | undefined): string {    
+    const platforms = msg?.Details?.find((item) => item.Name === "Platforms");
+    return platforms?.Value?.toString() || "";
+}
+
+export function getFormattedDate(dateInput: string | undefined | null): string {
+    if (!dateInput) return "";
+    const date = new Date(dateInput);
+    const year = date.getFullYear();
+    const month = date.toLocaleString('default', { month: 'short' });
+    const day = date.getDate();
+
+    return `${month} ${day}, ${year}`;
+}

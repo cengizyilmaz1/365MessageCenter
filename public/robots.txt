@@ -1,0 +1,20 @@
+# Allow all crawlers
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://messages.yilmazcengiz.tr/sitemap.xml
+
+# Disallow admin and private areas
+Disallow: /@build/
+Disallow: /@data/
+Disallow: /config/
+Disallow: /lib/
+Disallow: /types/
+
+# Allow static assets
+Allow: /public/
+Allow: /_next/static/
+
+# Allow RSS feed
+Allow: /feed.xml
