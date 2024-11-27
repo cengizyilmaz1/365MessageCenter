@@ -12,12 +12,14 @@ import { Search, SlidersHorizontal, AlertCircle, X, Calendar } from "lucide-reac
 import { Calendar as CalendarComponent } from "@/components/ui/calendar"
 import { getAllMessages, getFormattedDate, formatCalendarDate } from "@/lib/utils"
 import { Message } from "@/types/message"
+import { addDays, isWithinInterval, parseISO, startOfDay } from "date-fns"
 
 export default function MessagesTable() {
   const [searchQuery, setSearchQuery] = useState("")
   const [selectedServices, setSelectedServices] = useState<string[]>([])
   const [selectedTags, setSelectedTags] = useState<string[]>([])
-  const [selectedDate, setSelectedDate] = useState<Date>()
+  const [startDate, setStartDate] = useState<Date>()
+  const [endDate, setEndDate] = useState<Date>()
   const messages = getAllMessages()
 
   // Get unique services and tags
@@ -31,10 +33,25 @@ export default function MessagesTable() {
       message.Services?.some(service => selectedServices.includes(service))
     const matchesTags = selectedTags.length === 0 || 
       message.Tags?.some(tag => selectedTags.includes(tag))
-    const matchesDate = !selectedDate || 
-      (message.LastModifiedDateTime && new Date(message.LastModifiedDateTime).toDateString() === selectedDate.toDateString())
     
-    return matchesSearch && matchesServices && matchesTags && matchesDate
+    let matchesDateRange = true
+    if (startDate || endDate) {
+      const messageDate = message.LastModifiedDateTime ? parseISO(message.LastModifiedDateTime) : null
+      if (messageDate) {
+        if (startDate && endDate) {
+          matchesDateRange = isWithinInterval(messageDate, { 
+            start: startOfDay(startDate), 
+            end: startOfDay(addDays(endDate, 1)) 
+          })
+        } else if (startDate) {
+          matchesDateRange = messageDate >= startOfDay(startDate)
+        } else if (endDate) {
+          matchesDateRange = messageDate <= startOfDay(addDays(endDate, 1))
+        }
+      }
+    }
+
+    return matchesSearch && matchesServices && matchesTags && matchesDateRange
   })
 
   const toggleService = (service: string) => {
@@ -52,6 +69,13 @@ export default function MessagesTable() {
         : [...prev, tag]
     )
   }
+
+  const clearDateRange = () => {
+    setStartDate(undefined)
+    setEndDate(undefined)
+  }
+
+  const hasActiveFilters = selectedServices.length > 0 || selectedTags.length > 0 || startDate || endDate
 
   return (
     <div className="flex flex-col gap-4">
@@ -84,31 +108,57 @@ export default function MessagesTable() {
                       >
                         <SlidersHorizontal className="h-4 w-4" />
                         Filters
-                        {(selectedServices.length > 0 || selectedTags.length > 0 || selectedDate) && (
+                        {hasActiveFilters && (
                           <Badge variant="secondary" className="ml-1">
-                            {selectedServices.length + selectedTags.length + (selectedDate ? 1 : 0)}
+                            {selectedServices.length + selectedTags.length + ((startDate || endDate) ? 1 : 0)}
                           </Badge>
                         )}
                       </Button>
                     </PopoverTrigger>
                   </TooltipTrigger>
                   <TooltipContent>
-                    <p>Filter messages by service, tags, and date</p>
+                    <p>Filter messages by service, tags, and date range</p>
                   </TooltipContent>
                 </Tooltip>
               </TooltipProvider>
               
-              <PopoverContent className="w-80" align="end">
-                <div className="space-y-4">
+              <PopoverContent className="w-96 p-4" align="end">
+                <div className="space-y-6">
                   <div>
-                    <h4 className="font-medium mb-2">Date</h4>
-                    <div className="flex flex-col space-y-2">
-                      <CalendarComponent
-                        mode="single"
-                        selected={selectedDate}
-                        onSelect={setSelectedDate}
-                        className="rounded-md border"
-                      />
+                    <h4 className="font-medium mb-3">Date Range</h4>
+                    <div className="grid gap-4">
+                      <div className="grid grid-cols-2 gap-2">
+                        <div>
+                          <label className="text-sm text-muted-foreground">Start Date</label>
+                          <CalendarComponent
+                            mode="single"
+                            selected={startDate}
+                            onSelect={setStartDate}
+                            className="rounded-md border mt-1"
+                            disabled={(date) => endDate ? date > endDate : false}
+                          />
+                        </div>
+                        <div>
+                          <label className="text-sm text-muted-foreground">End Date</label>
+                          <CalendarComponent
+                            mode="single"
+                            selected={endDate}
+                            onSelect={setEndDate}
+                            className="rounded-md border mt-1"
+                            disabled={(date) => startDate ? date < startDate : false}
+                          />
+                        </div>
+                      </div>
+                      {(startDate || endDate) && (
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={clearDateRange}
+                          className="w-full"
+                        >
+                          Clear Date Range
+                        </Button>
+                      )}
                     </div>
                   </div>
 
@@ -156,19 +206,16 @@ export default function MessagesTable() {
             </Popover>
           </div>
 
-          {(selectedServices.length > 0 || selectedTags.length > 0 || selectedDate) && (
+          {hasActiveFilters && (
             <div className="flex flex-wrap gap-2">
-              {selectedDate && (
-                <Badge
-                  variant="secondary"
-                  className="px-2 py-1"
-                >
-                  {formatCalendarDate(selectedDate)}
+              {startDate && endDate && (
+                <Badge variant="secondary" className="px-2 py-1">
+                  {formatCalendarDate(startDate)} - {formatCalendarDate(endDate)}
                   <Button
                     variant="ghost"
                     size="sm"
                     className="h-4 w-4 p-0 ml-1 hover:bg-transparent"
-                    onClick={() => setSelectedDate(undefined)}
+                    onClick={clearDateRange}
                   >
                     <X className="h-3 w-3" />
                   </Button>
@@ -215,7 +262,7 @@ export default function MessagesTable() {
                 onClick={() => {
                   setSelectedServices([])
                   setSelectedTags([])
-                  setSelectedDate(undefined)
+                  clearDateRange()
                 }}
               >
                 Clear all filters
