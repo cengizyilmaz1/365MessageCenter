@@ -12,12 +12,13 @@ import { TailwindIndicator } from "@/components/tailwind-indicator"
 import { ScrollToTop } from "@/components/scroll-to-top"
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteConfig.url),
   title: {
     default: siteConfig.name,
     template: `%s | ${siteConfig.name}`,
   },
   description: siteConfig.description,
-  keywords: siteConfig.keywords,
+  keywords: [...siteConfig.keywords.en, ...siteConfig.keywords.tr],
   authors: siteConfig.authors,
   creator: siteConfig.creator,
   themeColor: [
@@ -33,6 +34,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
+    alternateLocale: "tr_TR",
     url: siteConfig.url,
     title: siteConfig.name,
     description: siteConfig.description,
@@ -52,6 +54,24 @@ export const metadata: Metadata = {
     description: siteConfig.description,
     creator: "@cengizyilmaz_",
     images: [siteConfig.ogImage],
+  },
+  alternates: {
+    canonical: siteConfig.url,
+    languages: {
+      'en-US': `${siteConfig.url}/en`,
+      'tr-TR': `${siteConfig.url}/tr`,
+    },
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
   },
   viewport: {
     width: "device-width",
