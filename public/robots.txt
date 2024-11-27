@@ -1,3 +1,6 @@
+# Microsoft 365 Message Center Archive Robots.txt
+# https://messages.yilmazcengiz.tr
+
 # Allow all crawlers
 User-agent: *
 Allow: /
@@ -15,6 +18,30 @@ Disallow: /types/
 # Allow static assets
 Allow: /public/
 Allow: /_next/static/
+Allow: /images/
+Allow: /icons/
+Allow: /fonts/
 
 # Allow RSS feed
 Allow: /feed.xml
+
+# Crawl-delay for rate limiting
+Crawl-delay: 10
+
+# Additional rules for specific bots
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Yandex
+Allow: /
+Crawl-delay: 1
+
+# Cache settings
+User-agent: *
+Request-rate: 1/1
+Visit-time: 0600-2100
