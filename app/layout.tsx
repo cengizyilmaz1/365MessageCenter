@@ -61,6 +61,9 @@ export const metadata: Metadata = {
       'en-US': `${siteConfig.url}/en`,
       'tr-TR': `${siteConfig.url}/tr`,
     },
+    types: {
+      'application/rss+xml': `${siteConfig.url}/feed.xml`,
+    }
   },
   robots: {
     index: true,
@@ -73,12 +76,19 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
+  verification: {
+    google: "your-google-site-verification",
+    yandex: "your-yandex-verification",
+    yahoo: "your-yahoo-verification",
+    bing: "your-bing-verification",
+  },
   viewport: {
     width: "device-width",
     initialScale: 1,
     maximumScale: 5,
     userScalable: true,
   },
+  category: "Technology",
 }
 
 interface RootLayoutProps {
