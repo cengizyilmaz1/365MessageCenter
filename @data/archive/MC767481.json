@@ -14,7 +14,7 @@
     },
     {
       "Name": "FeatureStatusJson",
-      "Value": "{\"383653\":[{\"RoadmapId\":383653,\"Platform\":\"Mac\",\"Status\":\"Scheduled\",\"LastUpdateTime\":\"2024-11-27T13:38:46.2039875Z\",\"LatestRing\":null},{\"RoadmapId\":383653,\"Platform\":\"Desktop\",\"Status\":\"Scheduled\",\"LastUpdateTime\":\"2024-11-27T13:38:46.2039877Z\",\"LatestRing\":null},{\"RoadmapId\":383653,\"Platform\":\"All\",\"Status\":\"Scheduled\",\"LastUpdateTime\":\"2024-11-27T13:38:46.2039878Z\",\"LatestRing\":null}]}"
+      "Value": "{\"383653\":[{\"RoadmapId\":383653,\"Platform\":\"Desktop\",\"Status\":\"Scheduled\",\"LastUpdateTime\":\"2024-11-27T15:14:56.5803544Z\",\"LatestRing\":null},{\"RoadmapId\":383653,\"Platform\":\"Mac\",\"Status\":\"Scheduled\",\"LastUpdateTime\":\"2024-11-27T15:14:56.5803546Z\",\"LatestRing\":null},{\"RoadmapId\":383653,\"Platform\":\"All\",\"Status\":\"Scheduled\",\"LastUpdateTime\":\"2024-11-27T15:14:56.5803547Z\",\"LatestRing\":null}]}"
     },
     {
       "Name": "Summary",
