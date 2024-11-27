@@ -14,7 +14,7 @@
     },
     {
       "Name": "FeatureStatusJson",
-      "Value": "{\"402186\":[{\"RoadmapId\":402186,\"Platform\":\"Desktop\",\"Status\":\"Launched\",\"LastUpdateTime\":\"2024-11-27T16:47:06.3547485Z\",\"LatestRing\":\"StandardRelease\"},{\"RoadmapId\":402186,\"Platform\":\"Android\",\"Status\":\"Launched\",\"LastUpdateTime\":\"2024-11-27T16:47:06.3547486Z\",\"LatestRing\":\"StandardRelease\"},{\"RoadmapId\":402186,\"Platform\":\"Mac\",\"Status\":\"Launched\",\"LastUpdateTime\":\"2024-11-27T16:47:06.3547487Z\",\"LatestRing\":\"StandardRelease\"},{\"RoadmapId\":402186,\"Platform\":\"iOS\",\"Status\":\"Launched\",\"LastUpdateTime\":\"2024-11-27T16:47:06.3547488Z\",\"LatestRing\":\"StandardRelease\"},{\"RoadmapId\":402186,\"Platform\":\"All\",\"Status\":\"Launched\",\"LastUpdateTime\":\"2024-11-27T16:47:06.354749Z\",\"LatestRing\":\"StandardRelease\"}]}"
+      "Value": "{\"402186\":[{\"RoadmapId\":402186,\"Platform\":\"Mac\",\"Status\":\"Launched\",\"LastUpdateTime\":\"2024-11-27T18:38:31.9898383Z\",\"LatestRing\":\"StandardRelease\"},{\"RoadmapId\":402186,\"Platform\":\"iOS\",\"Status\":\"Launched\",\"LastUpdateTime\":\"2024-11-27T18:38:31.9898384Z\",\"LatestRing\":\"StandardRelease\"},{\"RoadmapId\":402186,\"Platform\":\"Desktop\",\"Status\":\"Launched\",\"LastUpdateTime\":\"2024-11-27T18:38:31.9898384Z\",\"LatestRing\":\"StandardRelease\"},{\"RoadmapId\":402186,\"Platform\":\"Android\",\"Status\":\"Launched\",\"LastUpdateTime\":\"2024-11-27T18:38:31.9898385Z\",\"LatestRing\":\"StandardRelease\"},{\"RoadmapId\":402186,\"Platform\":\"All\",\"Status\":\"Launched\",\"LastUpdateTime\":\"2024-11-27T18:38:31.9898386Z\",\"LatestRing\":\"StandardRelease\"}]}"
     },
     {
       "Name": "Summary",
