@@ -11,17 +11,6 @@ export function SiteFooter() {
     <footer className="border-t bg-slate-50/50 backdrop-blur-sm supports-[backdrop-filter]:bg-slate-50/50 dark:bg-slate-900/50">
       <div className="container flex flex-col gap-8 py-8">
         <div className="flex flex-col gap-6 lg:flex-row lg:justify-between">
-          {/* Branding & Description */}
-          <div className="flex flex-col gap-2">
-            <Link href="/" className="flex items-center gap-2">
-              <Icons.logo className="h-6 w-6" />
-              <span className="font-bold">{siteConfig.name}</span>
-            </Link>
-            <p className="max-w-md text-sm text-muted-foreground">
-              {siteConfig.description}
-            </p>
-          </div>
-
           {/* Social Links */}
           <div className="flex flex-col gap-2">
             <h3 className="text-sm font-medium">Connect with me</h3>
