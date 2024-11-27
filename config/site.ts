@@ -1,34 +1,30 @@
-import { NavItem } from "@/types/nav"
-
-interface SiteConfig {
-  name: string
-  description: string
-  url: string
-  mainNav: NavItem[]
-  links: {
-    twitter: string
-    github: string
-    linkedin: string
-  }
-}
-
-export const siteConfig: SiteConfig = {
+export const siteConfig = {
   name: "Microsoft 365 Message Center Archive",
-  description: "Archive of messages posted in the Message Center of the Microsoft 365 Admin Portal.",
+  description: "Stay updated with the latest announcements, changes, and updates from Microsoft 365 services.",
   url: "https://messages.yilmazcengiz.tr",
-  mainNav: [
+  keywords: [
+    "Microsoft 365",
+    "Message Center",
+    "Microsoft Updates",
+    "Microsoft Announcements",
+    "Microsoft 365 Admin",
+    "Microsoft Cloud Services",
+    "Microsoft Service Updates",
+    "Microsoft 365 Changes",
+    "Microsoft 365 Roadmap",
+    "Microsoft 365 News"
+  ],
+  authors: [
     {
-      title: "Cengiz YILMAZ",
-      href: "https://yilmazcengiz.tr",
-    },
-    {
-      title: "Azure and M365 Tenant Find",
-      href: "https://tenant.365gurusu.com",
+      name: "Cengiz YILMAZ",
+      url: "https://yilmazcengiz.tr",
     },
   ],
+  creator: "Cengiz YILMAZ",
   links: {
     twitter: "https://twitter.com/cengizyilmaz_",
     github: "https://github.com/cengizyilmaz1",
     linkedin: "https://www.linkedin.com/in/cengizyilmaz/",
   },
+  ogImage: "/og.png",
 }
