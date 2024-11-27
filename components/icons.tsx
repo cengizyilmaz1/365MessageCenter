@@ -5,10 +5,9 @@ import {
   Twitter,
   Linkedin,
   MessageCircle,
-  type Icon as LucideIcon,
 } from "lucide-react"
 
-export type Icon = LucideIcon
+export type Icon = React.ComponentType<React.SVGProps<SVGSVGElement>>
 
 export const Icons = {
   sun: SunMedium,
